@@ -1,0 +1,610 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --font-script: 'Alex Brush', 'Great Vibes', cursive;
+  --font-serif-body: 'Cormorant Garamond', serif;
+  --shadow-invite: 0 30px 60px -20px oklch(0.4 0.08 20 / 0.35);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-on-dark: oklch(0.96 0.02 80);
+  --color-on-dark-muted: oklch(0.9 0.02 80 / 0.78);
+  --color-on-dark-faint: oklch(0.96 0.02 80 / 0.45);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(0.95 0.02 40);
+  --foreground: oklch(0.3 0.03 30);
+  --card: oklch(0.98 0.01 80);
+  --card-foreground: oklch(0.129 0.042 264.695);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.129 0.042 264.695);
+  --primary: oklch(0.5 0.1 15);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+  --secondary: oklch(0.968 0.007 247.896);
+  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --muted: oklch(0.968 0.007 247.896);
+  --muted-foreground: oklch(0.32 0.03 40);
+  --accent: oklch(0.72 0.11 80);
+  --accent-foreground: oklch(0.208 0.042 265.755);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.929 0.013 255.508);
+  --input: oklch(0.929 0.013 255.508);
+  --ring: oklch(0.704 0.04 256.788);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.968 0.007 247.896);
+  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-border: oklch(0.929 0.013 255.508);
+  --sidebar-ring: oklch(0.704 0.04 256.788);
+}
+
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.929 0.013 255.508);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.551 0.027 264.364);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.551 0.027 264.364);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+}
+
+/* ================= Live invite backgrounds ================= */
+
+.env-scene {
+  background: radial-gradient(
+    120% 90% at 50% 8%,
+    oklch(0.96 0.02 60) 0%,
+    oklch(0.93 0.03 40) 55%,
+    oklch(0.88 0.035 35) 100%
+  );
+}
+
+.anim-drift {
+  background:
+    radial-gradient(60% 45% at 18% 22%, oklch(0.9 0.05 20 / 0.4), transparent 70%),
+    radial-gradient(55% 40% at 82% 72%, oklch(0.88 0.06 80 / 0.4), transparent 70%);
+  animation: drift 20s ease-in-out infinite alternate;
+}
+
+@keyframes drift {
+  0% {
+    transform: translate3d(-2%, -1%, 0) scale(1.06);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate3d(2%, 2%, 0) scale(1.16);
+    opacity: 1;
+  }
+}
+
+/* soft readable halo over the artwork */
+.wash-light {
+  background:
+    linear-gradient(
+      180deg,
+      oklch(0.98 0.01 80 / 0.95) 0%,
+      oklch(0.98 0.01 80 / 0) 18%,
+      oklch(0.98 0.01 80 / 0) 62%,
+      oklch(0.98 0.01 80 / 0.98) 100%
+    ),
+    radial-gradient(
+      115% 85% at 50% 45%,
+      oklch(0.98 0.01 80 / 0.92) 22%,
+      oklch(0.98 0.01 80 / 0.6) 58%,
+      oklch(0.98 0.01 80 / 0) 84%
+    );
+}
+
+.wash-dark {
+  background:
+    linear-gradient(
+      180deg,
+      oklch(0.16 0.05 320 / 0.78) 0%,
+      oklch(0.16 0.05 320 / 0) 22%,
+      oklch(0.16 0.05 320 / 0) 72%,
+      oklch(0.16 0.05 320 / 0.82) 100%
+    ),
+    radial-gradient(
+      120% 90% at 50% 50%,
+      oklch(0.2 0.05 320 / 0.3) 25%,
+      oklch(0.16 0.05 320 / 0.68) 100%
+    );
+}
+
+/* drifting petals, leaves and sparks */
+.petal {
+  position: absolute;
+  top: -14%;
+  opacity: 0;
+  border-radius: 62% 38% 55% 45% / 55% 48% 52% 45%;
+  will-change: transform, opacity;
+}
+
+.petal--spark {
+  top: auto;
+  bottom: -12%;
+  border-radius: 9999px;
+}
+
+.anim-petal {
+  animation: petal-fall var(--dur, 14s) linear var(--delay, 0s) infinite;
+}
+
+.anim-spark {
+  animation: spark-rise var(--dur, 10s) ease-in-out var(--delay, 0s) infinite;
+}
+
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(0, -12vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--op, 0.7);
+  }
+  90% {
+    opacity: var(--op, 0.7);
+  }
+  100% {
+    transform: translate3d(var(--dx, 8vw), 122vh, 0) rotate(var(--rot, 420deg));
+    opacity: 0;
+  }
+}
+
+@keyframes spark-rise {
+  0% {
+    transform: translate3d(0, 18vh, 0) scale(0.6);
+    opacity: 0;
+  }
+  25% {
+    opacity: var(--op, 0.9);
+  }
+  60% {
+    transform: translate3d(var(--dx, 3vw), -22vh, 0) scale(1.15);
+    opacity: var(--op, 0.9);
+  }
+  100% {
+    transform: translate3d(0, -62vh, 0) scale(0.4);
+    opacity: 0;
+  }
+}
+
+/* slow breathing zoom on the artwork */
+.anim-kenburns {
+  animation: kenburns 30s ease-in-out infinite alternate;
+  transform-origin: 50% 45%;
+}
+
+@keyframes kenburns {
+  0% {
+    transform: scale(1.04) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.14) translate3d(-1.5%, -1.5%, 0);
+  }
+}
+
+/* light sweeping across the card */
+.anim-sheen {
+  background: linear-gradient(
+    105deg,
+    transparent 32%,
+    oklch(1 0 0 / 0.3) 48%,
+    transparent 64%
+  );
+  background-size: 260% 100%;
+  animation: sheen 11s ease-in-out infinite;
+  mix-blend-mode: soft-light;
+}
+
+@keyframes sheen {
+  0%,
+  100% {
+    background-position: 130% 0;
+  }
+  50% {
+    background-position: -30% 0;
+  }
+}
+
+.anim-rise {
+  animation: rise 0.85s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.anim-pulse-soft {
+  animation: pulse-soft 2.6s ease-in-out infinite;
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.62;
+    letter-spacing: 0.35em;
+  }
+  50% {
+    opacity: 1;
+    letter-spacing: 0.42em;
+  }
+}
+
+/* ================= Envelope ================= */
+
+.env {
+  position: relative;
+  width: min(92vw, 34rem);
+  aspect-ratio: 3 / 2;
+  background: transparent;
+  cursor: pointer;
+  perspective: 1400px;
+}
+
+.env__body {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 6px;
+  background:
+    repeating-linear-gradient(
+      122deg,
+      oklch(0.94 0.012 70 / 0.35) 0 3px,
+      oklch(0.97 0.012 80 / 0.35) 3px 6px
+    ),
+    linear-gradient(160deg, oklch(0.97 0.012 80), oklch(0.92 0.022 60));
+  box-shadow: var(--shadow-invite);
+}
+
+.env__card {
+  position: absolute;
+  left: 9%;
+  right: 9%;
+  top: 15%;
+  bottom: 12%;
+  z-index: 2;
+  display: block;
+  overflow: hidden;
+  border-radius: 4px;
+  background: oklch(0.99 0.008 85);
+  box-shadow: 0 12px 26px -14px oklch(0.4 0.08 20 / 0.55);
+  transition: transform 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.6s;
+}
+
+.env.is-open .env__card {
+  transform: translateY(-74%) scale(1.03);
+}
+
+.env__pocket {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: 6px;
+  clip-path: polygon(0 0, 50% 70%, 100% 0, 100% 100%, 0 100%);
+  background: linear-gradient(180deg, oklch(0.93 0.02 68), oklch(0.88 0.026 55));
+}
+
+.env__flap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 70%;
+  z-index: 4;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background: linear-gradient(
+    178deg,
+    oklch(0.96 0.014 75) 0%,
+    oklch(0.93 0.018 66) 70%,
+    oklch(0.9 0.022 60) 100%
+  );
+  filter: drop-shadow(0 4px 5px oklch(0.45 0.06 30 / 0.22));
+  transform-origin: top center;
+  backface-visibility: hidden;
+  transition: transform 1.1s cubic-bezier(0.6, 0.02, 0.2, 1);
+}
+
+.env.is-open .env__flap {
+  transform: rotateX(-176deg);
+}
+
+.env__seal {
+  position: absolute;
+  left: 50%;
+  top: 56%;
+  z-index: 5;
+  translate: -50% -50%;
+  display: grid;
+  place-items: center;
+  width: 4.75rem;
+  height: 4.75rem;
+  border-radius: 48% 52% 46% 54% / 52% 46% 54% 48%;
+  color: oklch(0.97 0.012 80);
+  background:
+    radial-gradient(circle at 34% 28%, oklch(0.62 0.15 18), oklch(0.4 0.13 10) 78%),
+    repeating-conic-gradient(from 12deg, oklch(0.5 0.13 14) 0deg 6deg, oklch(0.46 0.13 12) 6deg 12deg);
+  box-shadow:
+    inset 0 2px 4px oklch(0.9 0.05 30 / 0.35),
+    inset 0 -4px 8px oklch(0.25 0.1 10 / 0.6),
+    0 12px 22px -12px oklch(0.32 0.1 12 / 0.8);
+  text-shadow: 0 1px 1px oklch(0.25 0.1 10 / 0.6);
+  transition:
+    opacity 0.45s ease,
+    transform 0.65s cubic-bezier(0.6, 0.02, 0.2, 1);
+}
+
+.env.is-open .env__seal {
+  opacity: 0;
+  transform: scale(0.35) rotate(-30deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-drift,
+  .anim-petal,
+  .anim-spark,
+  .anim-kenburns,
+  .anim-sheen,
+  .anim-rise,
+  .anim-pulse-soft {
+    animation: none !important;
+  }
+  .petal {
+    opacity: var(--op, 0.5);
+  }
+}
+
+
+/* ---- wedding ambience effects ---- */
+.fx-halo {
+  position: absolute; left: 50%; top: 50%; width: 140vmin; height: 140vmin;
+  translate: -50% -50%; border-radius: 9999px; opacity: 0.22;
+  background: repeating-conic-gradient(from 0deg, color-mix(in oklab, var(--accent) 55%, transparent) 0deg 4deg, transparent 4deg 15deg);
+  mask: radial-gradient(circle, transparent 28%, #000 34%, #000 48%, transparent 62%);
+  -webkit-mask: radial-gradient(circle, transparent 28%, #000 34%, #000 48%, transparent 62%);
+  animation: fx-spin 80s linear infinite;
+}
+.fx-halo--dark { opacity: 0.3; }
+@keyframes fx-spin { to { rotate: 360deg; } }
+.fx-bokeh {
+  position: absolute; border-radius: 9999px; mix-blend-mode: screen;
+  background: radial-gradient(circle, color-mix(in oklab, var(--accent) 45%, transparent), transparent 70%);
+  animation: fx-float 14s ease-in-out infinite;
+}
+@keyframes fx-float {
+  0%,100% { transform: translate(0,0) scale(1); opacity: .35; }
+  50% { transform: translate(18px,-26px) scale(1.15); opacity: .75; }
+}
+.fx-star {
+  position: absolute; width: 6px; height: 6px;
+  background: radial-gradient(circle, var(--color-on-dark), transparent 70%);
+  box-shadow: 0 0 8px 2px color-mix(in oklab, var(--accent) 70%, transparent);
+  border-radius: 9999px; animation: fx-twinkle 3s ease-in-out infinite;
+}
+@keyframes fx-twinkle { 0%,100% { opacity: 0; transform: scale(.4); } 50% { opacity: 1; transform: scale(1.2); } }
+.fx-heart {
+  position: absolute; bottom: -24px; color: color-mix(in oklab, var(--primary) 60%, transparent);
+  animation: fx-rise 16s linear infinite;
+}
+@keyframes fx-rise {
+  0% { transform: translate(0,0) rotate(-10deg); opacity: 0; }
+  10% { opacity: .8; }
+  50% { transform: translate(20px,-50svh) rotate(10deg); }
+  90% { opacity: .6; }
+  100% { transform: translate(-10px,-105svh) rotate(-8deg); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fx-halo, .fx-bokeh, .fx-star, .fx-heart { animation: none; }
+  .fx-heart { display: none; }
+}
+.anim-slide-up { animation: slide-up 0.9s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes slide-up { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: none; } }
+.anim-bob { animation: bob 1.8s ease-in-out infinite; }
+@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+@media (prefers-reduced-motion: reduce) { .anim-slide-up, .anim-bob { animation: none; } }
+
+/* ================= Refined, page-specific wedding artistry ================= */
+.name-lockup {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  font-variant-caps: normal;
+  text-transform: none;
+  text-shadow: 0 1px 0 oklch(1 0 0 / 0.32);
+}
+.name-lockup span:first-child,
+.name-lockup span:last-child { text-transform: none; }
+.name-amp { color: var(--color-accent); font-weight: 400; font-style: italic; }
+.ganpati-art {
+  filter: saturate(1.32) contrast(1.06) drop-shadow(0 8px 24px oklch(0.42 0.14 55 / 0.48));
+  animation: ganpati-glow 4.8s ease-in-out infinite alternate;
+}
+@keyframes ganpati-glow {
+  from { filter: saturate(1.22) contrast(1.03) drop-shadow(0 5px 15px oklch(0.55 0.16 55 / 0.3)); transform: translateY(0) scale(1); }
+  to { filter: saturate(1.5) contrast(1.08) drop-shadow(0 9px 26px oklch(0.62 0.18 65 / 0.55)); transform: translateY(-3px) scale(1.025); }
+}
+
+.invite-card { isolation: isolate; border: 1px solid oklch(0.78 0.09 78 / 0.72); }
+.design-overlay { pointer-events: none; opacity: .52; mix-blend-mode: soft-light; }
+.design-overlay--shubh-vivah {
+  background: radial-gradient(ellipse at 50% 14%, oklch(0.98 0.13 83 / .72), transparent 38%),
+    repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg 14deg, oklch(0.91 0.14 75 / .13) 14deg 15deg);
+  mask-image: linear-gradient(to bottom, black, transparent 88%);
+}
+.design-overlay--invitation {
+  opacity: .36;
+  background: radial-gradient(ellipse at 0% 0%, oklch(0.83 0.12 5 / .5), transparent 46%),
+    radial-gradient(ellipse at 100% 100%, oklch(0.82 0.1 350 / .52), transparent 45%),
+    repeating-linear-gradient(45deg, transparent 0 28px, oklch(0.95 0.06 20 / .18) 29px 30px);
+}
+.design-overlay--reception {
+  opacity: .58;
+  background: radial-gradient(ellipse at 50% 0%, oklch(0.75 0.12 65 / .3), transparent 52%),
+    repeating-linear-gradient(135deg, transparent 0 26px, oklch(0.9 0.11 75 / .08) 27px 28px);
+}
+.design-overlay--venue {
+  opacity: .43;
+  background: radial-gradient(ellipse at 0% 0%, oklch(0.72 0.09 150 / .38), transparent 50%),
+    radial-gradient(ellipse at 100% 100%, oklch(0.72 0.1 95 / .35), transparent 48%),
+    repeating-linear-gradient(45deg, transparent 0 18px, oklch(0.9 0.04 140 / .1) 19px 20px);
+}
+.design-overlay--rsvp {
+  opacity: .42;
+  background: radial-gradient(ellipse at 20% 15%, oklch(0.83 0.13 10 / .45), transparent 42%),
+    radial-gradient(ellipse at 85% 85%, oklch(0.82 0.11 340 / .4), transparent 44%);
+}
+.design-overlay--save-the-date {
+  opacity: .32;
+  background: radial-gradient(ellipse at 50% 12%, oklch(0.9 0.1 300 / .35), transparent 40%),
+    repeating-linear-gradient(135deg, transparent 0 36px, oklch(0.95 0.08 290 / .12) 37px 38px);
+}
+
+/* Each page has its own motion language, while retaining the original card layout. */
+.page-content { animation: page-arrive .75s cubic-bezier(.2,.75,.2,1) both; }
+.page-content--shubh-vivah { animation-name: sacred-arrive; }
+.page-content--invitation { animation-name: floral-arrive; }
+.page-content--reception { animation-name: reception-arrive; }
+.page-content--venue { animation-name: venue-arrive; }
+.page-content--rsvp { animation-name: rose-arrive; }
+.page-content--save-the-date { animation-name: save-arrive; }
+@keyframes page-arrive { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes sacred-arrive { from { opacity: 0; transform: scale(.94); filter: blur(4px); } to { opacity: 1; transform: scale(1); filter: blur(0); } }
+@keyframes floral-arrive { from { opacity: 0; transform: translateX(-24px) rotate(-1deg); } to { opacity: 1; transform: translateX(0) rotate(0); } }
+@keyframes reception-arrive { from { opacity: 0; transform: translateY(18px) scale(.97); filter: brightness(1.5); } to { opacity: 1; transform: translateY(0) scale(1); filter: brightness(1); } }
+@keyframes venue-arrive { from { opacity: 0; transform: translateX(20px); clip-path: inset(0 0 0 20%); } to { opacity: 1; transform: translateX(0); clip-path: inset(0); } }
+@keyframes rose-arrive { from { opacity: 0; transform: scale(1.04); filter: blur(2px); } to { opacity: 1; transform: scale(1); filter: blur(0); } }
+@keyframes save-arrive { from { opacity: 0; transform: translateY(12px) scale(.985); letter-spacing: .03em; } to { opacity: 1; transform: translateY(0) scale(1); letter-spacing: normal; } }
+
+.effects--shubh-vivah .fx-halo { opacity: .42; animation-duration: 48s; }
+.effects--shubh-vivah .fx-heart, .effects--shubh-vivah .fx-star { display: none; }
+.effects--invitation .fx-halo { opacity: .1; animation-duration: 110s; }
+.effects--invitation .fx-star { display: none; }
+.effects--invitation .fx-heart { color: oklch(0.78 0.11 8 / .55); }
+.effects--reception .fx-halo { opacity: .12; animation-duration: 130s; }
+.effects--reception .fx-heart { display: none; }
+.effects--reception .fx-star { width: 7px; height: 7px; box-shadow: 0 0 12px 3px oklch(0.84 0.12 78 / .7); }
+.effects--venue .fx-halo { opacity: .08; }
+.effects--venue .fx-star, .effects--venue .fx-heart { display: none; }
+.effects--venue .fx-bokeh { background: radial-gradient(circle, oklch(0.8 0.1 140 / .35), transparent 70%); }
+.effects--rsvp .fx-halo { opacity: .13; animation-duration: 65s; }
+.effects--rsvp .fx-star { display: none; }
+.effects--save-the-date .fx-halo { opacity: .2; animation-duration: 100s; }
+.effects--save-the-date .fx-heart { display: none; }
+.effects--save-the-date .fx-star { animation-duration: 4.8s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ganpati-art, .page-content { animation: none !important; }
+}
+.wash-auspicious {
+  background:
+    radial-gradient(ellipse at 50% 30%, oklch(0.99 0.055 82 / .74) 0%, oklch(0.98 0.04 70 / .56) 36%, transparent 68%),
+    linear-gradient(180deg, oklch(0.88 0.1 65 / .2) 0%, transparent 30%, oklch(0.88 0.1 45 / .16) 100%);
+}
